@@ -47,7 +47,7 @@ style: """
   margin:0
   padding:0px
     // Position this where you want
-  top 270px
+  top 200px
   left 550px
   width:auto
   background:rgba(#666, .5)

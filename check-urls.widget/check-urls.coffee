@@ -1,6 +1,6 @@
 style: """
 	color: white
-	left: 500px
+	left: 600px
 	top: 10px
 	font-size: 10px
 	font-family: SFNS Display, 'Andale Mono', sans-serif

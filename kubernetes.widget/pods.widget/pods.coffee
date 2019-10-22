@@ -27,12 +27,12 @@ update: (output, domEl) ->
   html = ""
   # # Loop through the pods in the JSON.
   for item in data.items
-    status_class_colour = if (item.status.phase is "Running") then '' else 'red'
+    status_class_colour = if (item.status.phase is "Running" || item.status.phase is "Succedded") then 'green' else 'red'
     total_status_count  = if (item.status.containerStatuses != undefined) then item.status.containerStatuses.length
-    ready_status_count  = if (item.status.containerStatuses != undefined) then item.status.containerStatuses.reduce (x, y) -> 
+    ready_status_count  = if (item.status.containerStatuses != undefined  ) then item.status.containerStatuses.reduce (x, y) -> 
       x + (y.ready ? 1 : 0)
     , 0
-    restart_count       = item.status.containerStatuses.reduce (x, y) -> 
+    restart_count       =  if (item.status.containerStatuses != undefined  ) then item.status.containerStatuses.reduce (x, y) -> 
       x + y.restartCount
     , 0
     
@@ -56,8 +56,8 @@ style: """
   margin:0
   padding:0px
     // Position this where you want
-  top 400px
-  left 10px
+  top 50px
+  right 20px
   width:auto
   background:rgba(#666, .5)
   border:1px solid rgba(#000, .25)
@@ -72,6 +72,9 @@ style: """
 
   .pod .red
     color: rgba(#f00,0.75)
+
+  .pod .green
+    color: rgba(#0f0,0.75)
 
   .pod td
     color: rgba(#A9A9A9)
